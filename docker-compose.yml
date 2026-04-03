@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  deepstream-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    runtime: nvidia
+    network_mode: host
+    privileged: true
+    volumes:
+      - ./models:/workspace/models
+      - ./app/config:/workspace/app/config
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
